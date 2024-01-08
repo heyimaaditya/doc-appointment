@@ -17,9 +17,7 @@ const Login=()=>{
           <Form.Item label="Email" name="email">
             <Input type="email" required/> 
           </Form.Item>
-          <Form.Item label="Password" name="password">
-            <Input type="password" required/> 
-          </Form.Item>
+          
           <Link to='/register' className='m-2'>{''}Not a user?go for register</Link>
           <button className='btn btn-primary' type='submit'>Login</button>
 

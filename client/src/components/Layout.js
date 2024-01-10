@@ -1,9 +1,9 @@
 import React from "react";
 import "../styles/LayoutStyles.css";
-import { adminSideMenu, userSideMenu } from "../sideMenu/sideMenu";
+import { adminSideMenu, userSideMenu } from "../SideMenu/sideMenu";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { message,Badge } from "antd";
+import { Badge, message } from "antd";
 
 const Layout = ({ children }) => {
   const { user } = useSelector((state) => state.user);
@@ -19,8 +19,33 @@ const Layout = ({ children }) => {
     navigate("/login");
   };
 
+  //Doctor sidemenu
+
+  const doctorSideMenu = [
+    {
+      name: "Home",
+      path: "/",
+      icon: "fa-solid fa-house-chimney-medical",
+    },
+    {
+      name: "Appointments",
+      path: "/appointments",
+      icon: "fa-solid fa-bars",
+    },
+
+    {
+      name: "Profile",
+      path: `/doctor/profile/${user?._id}`,
+      icon: "fa-solid fa-user",
+    },
+  ];
+
   //rendering Sidemenu
-  const SideMenu = user?.isAdmin ? adminSideMenu : userSideMenu;
+  const SideMenu = user?.isAdmin
+    ? adminSideMenu
+    : user?.isDoctor
+    ? doctorSideMenu
+    : userSideMenu;
 
   return (
     <>
@@ -55,7 +80,7 @@ const Layout = ({ children }) => {
 
           <div className="content">
             <div className="header">
-            <div className="header-content" style={{ cursor: "pointer" }}>
+              <div className="header-content" style={{ cursor: "pointer" }}>
                 <Badge
                   count={user && user.notification.length}
                   onClick={() => {
@@ -63,8 +88,8 @@ const Layout = ({ children }) => {
                   }}
                 >
                   <i className="fa-solid fa-bell"></i>
-              </Badge>
-             
+                </Badge>
+
                 <Link to="/profile">{user?.name} </Link>
               </div>
             </div>

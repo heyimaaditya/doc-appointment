@@ -14,13 +14,14 @@ const doctorSchema = new mongoose.Schema(
       type: String,
       required: [true, "Last Name is Required"],
     },
-    phone: {
-      type: String,
-      required: [true, "Phone No. is Required"],
-    },
+   
     email: {
       type: String,
       required: [true, "Email is Required"],
+    },
+    phone: {
+      type: String,
+      required: [true, "Phone No. is Required"],
     },
     website: {
       type: String,

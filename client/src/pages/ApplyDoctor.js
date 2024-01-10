@@ -159,7 +159,7 @@ const ApplyDoctor = () => {
               required
               rules={[{ required: true }]}
             >
-              <TimePicker.RangePicker format="hh:mm" />
+              <TimePicker.RangePicker format="HH:mm" />
             </Form.Item>
           </Col>
         </Row>

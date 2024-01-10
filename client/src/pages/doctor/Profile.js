@@ -84,7 +84,7 @@ const Profile = () => {
 
   return (
     <Layout>
-      <h1>Profile</h1>
+      <h1 className="text-center">Profile</h1>
 
       {doctor && (
         <Form
@@ -200,7 +200,7 @@ const Profile = () => {
                 required
                 rules={[{ required: true }]}
               >
-                <TimePicker.RangePicker format="hh:mm" />
+                <TimePicker.RangePicker format="HH:mm" />
               </Form.Item>
             </Col>
           </Row>

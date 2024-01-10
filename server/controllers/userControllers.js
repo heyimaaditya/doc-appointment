@@ -173,5 +173,21 @@ const deleteAllNotificationController = async (req, res) => {
     });
   }
 };
-
-module.exports={loginController,registerController,getUserDataController,applyDoctorController,getAllNotificationController,deleteAllNotificationController};
+const getAllDoctorsController = async (req, res) => {
+  try {
+    const doctors = await doctorModel.find({ status: "accepted" });
+    res.status(200).send({
+      success: true,
+      message: "Doctors list fetched successfully",
+      data: doctors,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while fetching doctors",
+      error,
+    });
+  }
+};
+module.exports={loginController,registerController,getUserDataController,applyDoctorController,getAllNotificationController,deleteAllNotificationController,getAllDoctorsController};

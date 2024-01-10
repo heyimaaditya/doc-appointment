@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/LayoutStyles.css";
-import { adminSideMenu, userSideMenu } from "../SideMenu/sideMenu";
+import { adminSideMenu, userSideMenu } from "../sideMenu/sideMenu";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Badge, message } from "antd";

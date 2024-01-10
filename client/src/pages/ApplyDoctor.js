@@ -1,11 +1,48 @@
 import React from "react";
 import Layout from "./../components/Layout";
-import { Form, Row, Col, Input, TimePicker } from "antd";
+import { Form, Row, Col, Input, TimePicker, message } from "antd";
+
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { showLoading, hideLoading } from "../redux/features/alertSlice";
+import axios from "axios";
 
 const ApplyDoctor = () => {
+  const { user } = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   // Form Handle
-  const handleFinish = (values) => {
-    console.log(values);
+  const handleFinish = async (values) => {
+    try {
+      dispatch(showLoading());
+
+      const res = await axios.post(
+        'http://localhost:4000/api/v1/user/apply-doctor',
+        { ...values, userId: user._id },
+        {
+          headers: {
+            // must have one space after Bearer . read documentation
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
+
+      dispatch(hideLoading());
+
+      if (res.data.success) {
+        message.success(res.data.message);
+        navigate("/");
+      } else {
+        message.error(res.data.message);
+      }
+    } catch (error) {
+      dispatch(hideLoading());
+      console.log(error);
+      message.error("Something went wrong");
+    }
   };
 
   return (
@@ -28,7 +65,7 @@ const ApplyDoctor = () => {
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label="Last Name"
-              name="lastname"
+              name="lastName"
               required
               rules={[{ required: true }]}
             >
@@ -48,7 +85,7 @@ const ApplyDoctor = () => {
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label="Email"
-              name=" email"
+              name="email"
               required
               rules={[{ required: true }]}
             >
@@ -76,8 +113,8 @@ const ApplyDoctor = () => {
         <Row gutter={18}>
           <Col xs={24} md={24} lg={8}>
             <Form.Item
-              label=" Specialization"
-              name=" specialization"
+              label="Specialization"
+              name="specialization"
               required
               rules={[{ required: true }]}
             >
@@ -110,11 +147,11 @@ const ApplyDoctor = () => {
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label="Office Time"
-              name=" officeTime"
+              name="officeTime"
               required
               rules={[{ required: true }]}
             >
-              <TimePicker.RangePicker />
+              <TimePicker.RangePicker format="hh:mm" />
             </Form.Item>
           </Col>
         </Row>

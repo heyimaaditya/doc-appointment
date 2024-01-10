@@ -1,0 +1,91 @@
+.main{
+  padding: 15px;
+  height: 100vh;
+}
+.layout{
+display: flex;
+}
+
+.sidebar{
+ min-height: 100%;
+  width: 250px;
+  border-radius: 4px;
+  background-color: bisque;
+  box-shadow: 0 0 3px black;
+  margin-right: 15px;
+}
+
+.logo h6{
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.content{
+  height: 100%;
+  width: 100%;
+}
+
+.header{
+  height: 10vh;
+  margin-bottom: 15px;
+  box-shadow: 0 0 3px black;
+  background-color: beige;
+}
+
+.body{
+height: 90vh;
+margin-bottom: 15px;
+box-shadow: 0 0 3px black;
+background-color: beige;
+}
+
+.menu{
+  margin-top: 40px;
+}
+
+.menu-item{
+margin-top: 25px;
+
+}
+
+.menu-item a{
+  color: black;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.menu-item i {
+ font-size: 1.2rem; 
+margin: 0 10px;
+}
+
+.active {
+  background-color: azure;
+  padding: 8px;
+}
+
+.active a, .active i {
+  color: brown;
+}
+.header-content{
+  display: flex;
+  align-items: center;
+  height: 100px;
+  justify-content: flex-end;
+  margin: 0 15px;
+}
+
+.header-content i{
+  margin-right: 20px;
+  font-size: 1.3rem;
+}
+
+.header-content a{
+  text-decoration: none;
+  color: darkred;
+  margin: 0 10px;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+}

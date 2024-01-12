@@ -4,6 +4,8 @@ const {
   getAllUsersController,
   getAllDoctorsController,
   changeAccountStatusController,
+  updateAdminProfileController,
+  getAdminProfileController,
 } = require("../controllers/adminControllers");
 
 const router = express.Router();
@@ -18,5 +20,13 @@ router.post(
   authMiddleware,
   changeAccountStatusController
 );
+router.post("/getAdminProfile", authMiddleware, getAdminProfileController);
 
+// update Admin Profile ( post method)
+
+router.post(
+  "/updateAdminProfile",
+  authMiddleware,
+  updateAdminProfileController
+);
 module.exports = router;

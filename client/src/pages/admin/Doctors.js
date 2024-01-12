@@ -31,7 +31,7 @@ const Doctors = () => {
   const handleAccountStatus = async (record, status) => {
     try {
       const res = await axios.post(
-        'http://localhost:4000/api/v1/admin//changeAccountStatus',
+        'http://localhost:4000/api/v1/admin/changeAccountStatus',
         { doctorId: record._id, userId: record.userId, status: status },
         {
           headers: {
@@ -100,8 +100,8 @@ const Doctors = () => {
 
   return (
     <Layout>
-      <h1>All Doctors</h1>
-      <Table columns={columns} dataSource={doctors} />
+      <h1 className="text-center m-2">All Doctors</h1>
+      <Table rowKey="_id" columns={columns} dataSource={doctors} />
     </Layout>
   );
 };

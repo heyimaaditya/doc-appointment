@@ -1,6 +1,10 @@
 import React from "react";
 import "../styles/LayoutStyles.css";
-import { adminSideMenu, userSideMenu } from "../sideMenu/sideMenu";
+import {
+  adminSideMenu,
+  doctorSideMenu,
+  userSideMenu,
+} from "../sideMenu/sideMenu";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Badge, message } from "antd";
@@ -21,24 +25,24 @@ const Layout = ({ children }) => {
 
   //Doctor sidemenu
 
-  const doctorSideMenu = [
-    {
-      name: "Home",
-      path: "/",
-      icon: "fa-solid fa-house-chimney-medical",
-    },
-    {
-      name: "Appointments",
-      path: "/doctor-appointments",
-      icon: "fa-solid fa-bars",
-    },
+  // const doctorSideMenu = [
+  //   {
+  //     name: "Home",
+  //     path: "/",
+  //     icon: "fa-solid fa-house-chimney-medical",
+  //   },
+  //   {
+  //     name: "Appointments",
+  //     path: "/doctor-appointments",
+  //     icon: "fa-solid fa-bars",
+  //   },
 
-    {
-      name: "Profile",
-      path: `/doctor/profile/${user?._id}`,
-      icon: "fa-solid fa-user",
-    },
-  ];
+  //   {
+  //     name: "Profile",
+  //     path: `/doctor/profile/${user?._id}`,
+  //     icon: "fa-solid fa-user",
+  //   },
+  // ];
 
   //rendering Sidemenu
   const SideMenu = user?.isAdmin
@@ -90,7 +94,20 @@ const Layout = ({ children }) => {
                   <i className="fa-solid fa-bell"></i>
                 </Badge>
 
-                <Link to={`/doctor/profile/${user?._id}`}>{user?.name} </Link>
+                <div className="userName">
+                  {user?.isAdmin ? (
+                    <Link to={`/admin/profile/${user?._id}`}>
+                      {user?.name}{" "}
+                    </Link>
+                  ) : user?.isDoctor ? (
+                    <Link to={`/doctor/profile/${user?._id}`}>
+                      {user?.name}{" "}
+                    </Link>
+                  ) : (
+                    <Link to={`/user/profile/${user?._id}`}>{user?.name} </Link>
+                  )}
+                  {/* <Link to={`/doctor/profile/${user?._id}`}>{user?.name} </Link> */}
+                </div>
               </div>
             </div>
             <div className="body">{children}</div>

@@ -37,7 +37,10 @@ const HomePage = () => {
     <Layout>
       <h1 className="text-center"> HomePage</h1>
       <Row>
-        {doctors && doctors.map((doctor) => <DoctorList doctor={doctor} />)}
+      {doctors &&
+          doctors.map((doctor) => (
+            <DoctorList key={doctor._id} doctor={doctor} />
+          ))}
       </Row>
     </Layout>
   );

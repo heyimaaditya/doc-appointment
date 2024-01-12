@@ -66,4 +66,44 @@ const changeAccountStatusController = async (req, res) => {
     });
   }
 };
-module.exports = { getAllUsersController, getAllDoctorsController,changeAccountStatusController };
+const getAdminProfileController = async (req, res) => {
+  try {
+    const admin = await userModel.findOne({ _id: req.body.userId });
+    res.status(200).send({
+      success: true,
+      message: "Admin data fetch Successfully",
+      data: admin,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while fetching Admin Info",
+      error,
+    });
+  }
+};
+
+//update doctor profile
+
+const updateAdminProfileController = async (req, res) => {
+  try {
+    const admin = await userModel.findOneAndUpdate(
+      { _id: req.body.userId },
+      req.body
+    );
+    res.status(200).send({
+      success: true,
+      message: "Admin Profile Updated Successfully",
+      data: admin,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while Profile update",
+      error,
+    });
+  }
+};
+module.exports = { getAllUsersController, getAllDoctorsController,changeAccountStatusController,updateAdminProfileController,getAdminProfileController };

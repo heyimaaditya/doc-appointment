@@ -272,4 +272,44 @@ const userAppointmentsController = async (req, res) => {
     });
   }
 };
-module.exports={loginController,registerController,getUserDataController,applyDoctorController,getAllNotificationController,deleteAllNotificationController,getAllDoctorsController,bookAppointmentController,bookingAvailabilityController,userAppointmentsController};
+const getUserProfileController = async (req, res) => {
+  try {
+    const user = await userModel.findOne({ _id: req.body.userId });
+    res.status(200).send({
+      success: true,
+      message: "User Data fetch Successfully",
+      data: user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while fetching user  Info",
+      error,
+    });
+  }
+};
+
+//update doctor profile
+
+const updateUserProfileController = async (req, res) => {
+  try {
+    const user = await userModel.findOneAndUpdate(
+      { _id: req.body.userId },
+      req.body
+    );
+    res.status(200).send({
+      success: true,
+      message: "Profile Updated Successfully",
+      data: user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while Profile update",
+      error,
+    });
+  }
+};
+module.exports={loginController,registerController,getUserDataController,applyDoctorController,getAllNotificationController,deleteAllNotificationController,getAllDoctorsController,bookAppointmentController,bookingAvailabilityController,userAppointmentsController,updateUserProfileController,getUserProfileController};

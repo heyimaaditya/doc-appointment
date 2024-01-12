@@ -12,10 +12,10 @@ import ApplyDoctor from './pages/ApplyDoctor';
 import NotificationPage from './pages/NotificationPage';
 import Users from "./pages/admin/Users";
 import Doctors from "./pages/admin/Doctors";
-import Profile from "./pages/doctor/Profile";
+import DoctorProfile from "./pages/doctor/DoctorProfile";
 import BookingPage from "./pages/BookingPage";
 import AppointmentsPage from './pages/AppointmentsPage';
-
+import DoctorAppointmentsPage from "./pages/doctor/DoctorAppointmentsPage";
 function App() {
   const {loading}=useSelector((state)=>state.alerts);
   return (
@@ -38,6 +38,14 @@ function App() {
           </PublicRoute>
           }
         />
+         <Route
+              path="/doctor-appointments"
+              element={
+                <ProtectedRoute>
+                  <DoctorAppointmentsPage />
+                </ProtectedRoute>
+              }
+            />
         <Route path='/register' 
         element={
           <PublicRoute>
@@ -57,7 +65,7 @@ function App() {
               path="/doctor/profile/:id"
               element={
                 <ProtectedRoute>
-                  <Profile />
+                  <DoctorProfile />
                 </ProtectedRoute>
               }
             />

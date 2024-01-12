@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Layout from "./../../components/Layout";
+import Layout from "../../components/Layout";
 
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { showLoading, hideLoading } from "../../redux/features/alertSlice";
 import moment from "moment";
 
-const Profile = () => {
+const DoctorProfile = () => {
   const params = useParams();
   const { user } = useSelector((state) => state.user);
   const [doctor, setDoctor] = useState(null);
@@ -216,4 +216,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default DoctorProfile;

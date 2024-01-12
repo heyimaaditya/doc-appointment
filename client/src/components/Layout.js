@@ -29,7 +29,7 @@ const Layout = ({ children }) => {
     },
     {
       name: "Appointments",
-      path: "/appointments",
+      path: "/doctor-appointments",
       icon: "fa-solid fa-bars",
     },
 
@@ -90,7 +90,7 @@ const Layout = ({ children }) => {
                   <i className="fa-solid fa-bell"></i>
                 </Badge>
 
-                <Link to="/profile">{user?.name} </Link>
+                <Link to={`/doctor/profile/${user?._id}`}>{user?.name} </Link>
               </div>
             </div>
             <div className="body">{children}</div>

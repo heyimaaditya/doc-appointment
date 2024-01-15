@@ -17,7 +17,7 @@ import BookingPage from "./pages/BookingPage";
 import AppointmentsPage from './pages/AppointmentsPage';
 import DoctorAppointmentsPage from "./pages/doctor/DoctorAppointmentsPage";
 import UserProfile from "./pages/user/UserProfile";
-import AdminProfile from './pages/admin/adminProfile';
+import AdminProfile from './pages/admin/AdminProfile'
 function App() {
   const {loading}=useSelector((state)=>state.alerts);
   return (

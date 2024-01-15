@@ -100,7 +100,7 @@ const applyDoctorController = async (req, res) => {
 
     // to send notificaton to admin
     const adminUser = await userModel.findOne({ isAdmin: true });
-    const notification = adminUser.notification;
+    const notification = adminUser.notification||undefined;
     notification.push({
       type: "appy-doctor-request",
       message: `${newDoctor.firstName} ${newDoctor.lastName} has applied as a Doctor`,

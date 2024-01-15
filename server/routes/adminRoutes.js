@@ -6,6 +6,7 @@ const {
   changeAccountStatusController,
   updateAdminProfileController,
   getAdminProfileController,
+  removeUserController
 } = require("../controllers/adminControllers");
 
 const router = express.Router();
@@ -29,4 +30,5 @@ router.post(
   authMiddleware,
   updateAdminProfileController
 );
+router.post("/removeUser", authMiddleware, removeUserController);
 module.exports = router;

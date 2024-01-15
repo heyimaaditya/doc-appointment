@@ -16,7 +16,7 @@ export const userSideMenu = [
   },
   {
     name: "Profile",
-    path: "/profile",
+    path: "/user/profile/:id",
     icon: "fa-solid fa-user",
   },
 ];

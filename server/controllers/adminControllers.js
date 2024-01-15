@@ -106,4 +106,35 @@ const updateAdminProfileController = async (req, res) => {
     });
   }
 };
-module.exports = { getAllUsersController, getAllDoctorsController,changeAccountStatusController,updateAdminProfileController,getAdminProfileController };
+const removeUserController = async (req, res) => {
+  try {
+    const { userId } = req.body;
+
+    // Assuming you have a userModel for managing users
+    const user = await userModel.findByIdAndDelete({ _id: userId });
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    // If user is a doctor, you might want to handle additional logic
+    // to remove the corresponding doctor profile if needed
+
+    res.status(200).json({
+      success: true,
+      message: "User removed successfully",
+      data: user,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Error in removing user",
+      error: error.message,
+    });
+  }
+};
+module.exports = { getAllUsersController, getAllDoctorsController,changeAccountStatusController,updateAdminProfileController,getAdminProfileController,removeUserController };
